@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for position in portfolio %}
+            <tr>
+                <td>{{ position['symbol'] }}</td>
+                <td>{{ position['quantity'] }}</td>
+                <td>{{ prices[position['symbol']] | usd }}</td>
+                <td>{{ values[position['symbol']] | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Cash</td>
+                <td>{{ user[0]['cash'] | usd }}</td>
+            </tr>
+            <tr>
+                <td>TOTAL</td>
+                <td>{{ total | usd }}</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
+
+
